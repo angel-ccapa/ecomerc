@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import myContext from "../../context/myContext";
 import { useParams } from "react-router";
-import { fireDB } from "../../firebase/FirebaseConfig";
+import { firedB } from "../../firebase/FirebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import Loader from "../../components/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,26 +13,26 @@ const ProductInfo = () => {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
 
-    const [product, setProduct] = useState('')
+    const [product, setProduct] = useState("");
     // console.log(product)
 
-    const { id } = useParams()
+    const { id } = useParams();
 
     // console.log(product)
 
     // getProductData
     const getProductData = async () => {
-        setLoading(true)
+        setLoading(true);
         try {
-            const productTemp = await getDoc(doc(fireDB, "products", id))
+            const productTemp = await getDoc(doc(firedB, "products", id));
             // console.log({...productTemp.data(), id : productTemp.id})
-            setProduct({...productTemp.data(), id : productTemp.id})
-            setLoading(false)
+            setProduct({ ...productTemp.data(), id: productTemp.id });
+            setLoading(false);
         } catch (error) {
-            console.log(error)
-            setLoading(false)
+            console.log(error);
+            setLoading(false);
         }
-    }
+    };
 
     const cartItems = useSelector((state) => state.cart);
     const dispatch = useDispatch();
@@ -40,37 +40,33 @@ const ProductInfo = () => {
     const addCart = (item) => {
         // console.log(item)
         dispatch(addToCart(item));
-        toast.success("Add to cart")
-    }
+        toast.success("Agreado Al carro");
+    };
 
     const deleteCart = (item) => {
         dispatch(deleteFromCart(item));
-        toast.success("Delete cart")
-    }
+        toast.success("Eliminado del carro");
+    };
 
     // console.log(cartItems)
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems])
-
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+    }, [cartItems]);
 
     useEffect(() => {
-        getProductData()
-
-    }, [])
+        getProductData();
+    }, []);
     return (
         <Layout>
             <section className="py-5 lg:py-16 font-poppins dark:bg-gray-800">
-                {loading ?
+                {loading ? (
                     <>
                         <div className="flex justify-center items-center">
                             <Loader />
                         </div>
                     </>
-
-                    :
-
+                ) : (
                     <>
                         <div className="max-w-6xl px-4 mx-auto">
                             <div className="flex flex-wrap mb-24 -mx-4">
@@ -152,44 +148,49 @@ const ProductInfo = () => {
                                                 </ul>
                                             </div>
                                             <p className="inline-block text-2xl font-semibold text-gray-700 dark:text-gray-400 ">
-                                                <span>₹ {product?.price}</span>
+                                                <span>S/ {product?.price}</span>
                                             </p>
                                         </div>
                                         <div className="mb-6">
                                             <h2 className="mb-2 text-lg font-bold text-gray-700 dark:text-gray-400">
-                                                Description :
+                                                Descripcion :
                                             </h2>
                                             <p>{product?.description}</p>
                                         </div>
 
                                         <div className="mb-6 " />
                                         <div className="flex flex-wrap items-center mb-6">
-                                            {cartItems.some((p) => p.id === product.id)
-                                                ?
+                                            {cartItems.some(
+                                                (p) => p.id === product.id,
+                                            ) ? (
                                                 <button
-                                                    onClick={() => deleteCart(product)}
+                                                    onClick={() =>
+                                                        deleteCart(product)
+                                                    }
                                                     className="w-full px-4 py-3 text-center text-white bg-red-500 border border--600  hover:bg-red-600 hover:text-gray-100  rounded-xl"
                                                 >
-                                                    Delete to cart
+                                                    Eliminar del Carro
                                                 </button>
-                                                :
+                                            ) : (
                                                 <button
-                                                    onClick={() => addCart(product)}
-                                                    className="w-full px-4 py-3 text-center text-pink-600 bg-pink-100 border border-pink-600  hover:bg-pink-600 hover:text-gray-100  rounded-xl"
+                                                    onClick={() =>
+                                                        addCart(product)
+                                                    }
+                                                    className="w-full px-4 py-3 text-center text-red-600 bg-red-100 border border-red-600  hover:bg-red-600 hover:text-gray-100  rounded-xl"
                                                 >
-                                                    Add to cart
+                                                    Agregar al carro
                                                 </button>
-                                            }
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </>}
+                    </>
+                )}
             </section>
-
         </Layout>
     );
-}
+};
 
 export default ProductInfo;

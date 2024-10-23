@@ -2,19 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
 import { useSelector } from "react-redux";
 
-
 const Navbar = () => {
-    // get user from localStorage 
-    const user = JSON.parse(localStorage.getItem('users'));
+    // get user from localStorage
+    const user = JSON.parse(localStorage.getItem("users"));
 
-    // navigate 
+    // navigate
     const navigate = useNavigate();
 
-    // logout function 
+    // logout function
     const logout = () => {
-        localStorage.clear('users');
-        navigate("/login")
-    }
+        localStorage.clear("users");
+        navigate("/login");
+    };
 
     // CartItems
     const cartItems = useSelector((state) => state.cart);
@@ -24,55 +23,70 @@ const Navbar = () => {
         <ul className="flex space-x-3 text-white font-medium text-md px-5 ">
             {/* Home */}
             <li>
-                <Link to={'/'}>Home</Link>
+                <Link to={"/"}>Inicio</Link>
             </li>
 
             {/* All Product */}
             <li>
-                <Link to={'/allproduct'}>All Product</Link>
+                <Link to={"/allproduct"}>Productos</Link>
             </li>
 
             {/* Signup */}
-            {!user ? <li>
-                <Link to={'/signup'}>Signup</Link>
-            </li> : ""}
+            {!user ? (
+                <li>
+                    <Link to={"/signup"}>Crea Cuenta</Link>
+                </li>
+            ) : (
+                ""
+            )}
 
-            {/* Signup */}
-            {!user ? <li>
-                <Link to={'/login'}>Login</Link>
-            </li> : ""}
+            {/* Login */}
+            {!user ? (
+                <li>
+                    <Link to={"/login"}>Iniciar Sesión</Link>
+                </li>
+            ) : (
+                ""
+            )}
 
             {/* User */}
-            {user?.role === "user" && <li>
-                <Link to={'/user-dashboard'}>User</Link>
-            </li>}
+            {user?.role === "user" && (
+                <li>
+                    <Link to={"/user-dashboard"}>Usuario</Link>
+                </li>
+            )}
 
             {/* Admin */}
-            {user?.role === "admin" && <li>
-                <Link to={'/admin-dashboard'}>Admin</Link>
-            </li>}
+            {user?.role === "admin" && (
+                <li>
+                    <Link to={"/admin-dashboard"}>Administrador</Link>
+                </li>
+            )}
 
-            {/* logout */}
-            {user && <li className=" cursor-pointer" onClick={logout}>
-                logout
-            </li>}
+            {/* Logout */}
+            {user && (
+                <li className="cursor-pointer" onClick={logout}>
+                    Salir
+                </li>
+            )}
 
             {/* Cart */}
             <li>
-                <Link to={'/cart'}>
-                    Cart({cartItems.length})
-                </Link>
+                <Link to={"/cart"}>Carro({cartItems.length})</Link>
             </li>
         </ul>
-    )
+    );
+
     return (
-        <nav className="bg-pink-600 sticky top-0">
+        <nav className="bg-red-500 sticky top-0">
             {/* main  */}
             <div className="lg:flex lg:justify-between items-center py-3 lg:px-3 ">
                 {/* left  */}
                 <div className="left py-3 lg:py-0">
-                    <Link to={'/'}>
-                        <h2 className=" font-bold text-white text-2xl text-center">E-Bharat</h2>
+                    <Link to={"/"}>
+                        <h2 className="font-bold text-white text-2xl text-center">
+                            Distribuidora America
+                        </h2>
                     </Link>
                 </div>
 
@@ -86,6 +100,6 @@ const Navbar = () => {
             </div>
         </nav>
     );
-}
+};
 
 export default Navbar;

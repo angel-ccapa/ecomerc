@@ -4,26 +4,28 @@ const Footer = () => {
     return (
         <div>
             {/* footer  */}
-            <footer className="text-gray-600 body-font bg-pink-600">
+            <footer className="text-gray-600 body-font bg-red-600">
                 {/* main  */}
                 <div className="container px-5 py-5 mx-auto flex items-center sm:flex-row flex-col">
                     {/* logo  */}
                     <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
-                        <span className="text-xl font-bold">E-bharat</span>
+                        <span className="text-xl font-bold">
+                            Distribuidora america
+                        </span>
                     </a>
                     {/* para  */}
                     <p className="text-sm text-gray-100 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-                        © 2024 ebharat —
+                        © 2024 Angel —
                         <Link
-                        to={'/'}
+                            to={"/"}
                             className="text-gray-100 ml-1"
                             rel="noopener noreferrer"
                             target="_blank"
                         >
-                            @ebharat
+                            @Angel
                         </Link>
                     </p>
-                    
+
                     {/* media icon  */}
                     <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
                         {/* facebook  */}
@@ -65,7 +67,14 @@ const Footer = () => {
                                 className="w-5 h-5"
                                 viewBox="0 0 24 24"
                             >
-                                <rect width={20} height={20} x={2} y={2} rx={5} ry={5} />
+                                <rect
+                                    width={20}
+                                    height={20}
+                                    x={2}
+                                    y={2}
+                                    rx={5}
+                                    ry={5}
+                                />
                                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01" />
                             </svg>
                         </a>
@@ -93,6 +102,6 @@ const Footer = () => {
             </footer>
         </div>
     );
-}
+};
 
 export default Footer;

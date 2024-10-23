@@ -1,43 +1,31 @@
 import { useNavigate } from "react-router";
 
-// category 
+// category
 const category = [
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/4359/4359963.png',
-        name: 'fashion'
+        image: "https://casabibliacajamarca.com/wp-content/uploads/2024/01/cuaderno-classic-a4-color-entero-1020.jpg",
+        name: "Cuaderno",
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/11833/11833323.png',
-        name: 'shirt'
+        image: "https://tienda.faber-castell.com.pe/cdn/shop/files/140733-Boligrafo-Grip-Plus-Ball-M-black-1.jpg?v=1723063074&width=1280",
+        name: "Lapicero",
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/8174/8174424.png',
-        name: 'jacket'
+        image: "https://tiendartemas.com/cdn/shop/products/artesco-pastel.jpg?v=1671461356",
+        name: "Plumon",
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/7648/7648246.png',
-        name: 'mobile'
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj0i0p7vrjwoJnrXZy6MXKJ4LeEFK2Xby5bQ&s",
+        name: "Libros",
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/12142/12142416.png',
-        name: 'laptop'
+        image: "https://cdn-icons-png.flaticon.com/512/7580/7580377.png",
+        name: "Otros",
     },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/10686/10686553.png',
-        name: 'shoes'
-    },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/12114/12114279.png',
-        name: 'home'
-    },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/11946/11946316.png',
-        name: 'books'
-    }
-]
+];
 
 const Category = () => {
-    // naviaget 
+    // naviaget
     const navigate = useNavigate();
     return (
         <div>
@@ -51,7 +39,12 @@ const Category = () => {
                             return (
                                 <div key={index} className="px-3 lg:px-10">
                                     {/* Image  */}
-                                    <div onClick={() => navigate(`/category/${item.name}`)} className=" w-16 h-16 lg:w-24 lg:h-24 max-w-xs rounded-full  bg-pink-500 transition-all hover:bg-pink-400 cursor-pointer mb-1 " >
+                                    <div
+                                        onClick={() =>
+                                            navigate(`/category/${item.name}`)
+                                        }
+                                        className=" w-16 h-16 lg:w-24 lg:h-24 max-w-xs rounded-full  bg-red-500 transition-all hover:bg-red-400 cursor-pointer mb-1 "
+                                    >
                                         <div className="flex justify-center mb-12">
                                             {/* Image tag  */}
                                             <img src={item.image} alt="img" />
@@ -59,18 +52,24 @@ const Category = () => {
                                     </div>
 
                                     {/* Name Text  */}
-                                    <h1 className=' text-sm lg:text-lg text-center font-medium title-font first-letter:uppercase '>{item.name}</h1>
+                                    <h1 className=" text-sm lg:text-lg text-center font-medium title-font first-letter:uppercase ">
+                                        {item.name}
+                                    </h1>
                                 </div>
-                            )
+                            );
                         })}
                     </div>
                 </div>
             </div>
 
             {/* style  */}
-            <style dangerouslySetInnerHTML={{ __html: "\n.hide-scroll-bar {\n  -ms-overflow-style: none;\n  scrollbar-width: none;\n}\n.hide-scroll-bar::-webkit-scrollbar {\n  display: none;\n}\n" }} />
+            <style
+                dangerouslySetInnerHTML={{
+                    __html: "\n.hide-scroll-bar {\n  -ms-overflow-style: none;\n  scrollbar-width: none;\n}\n.hide-scroll-bar::-webkit-scrollbar {\n  display: none;\n}\n",
+                }}
+            />
         </div>
     );
-}
+};
 
 export default Category;
